@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoBytes Webapp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+        .header {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+            position: fixed;
+            width: 100%;
+            height: 70;
+            top: 0;
+            left: 0;
+            z-index: 1000; /* Stay above other elements */
+            margin-bottom: 20px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 90px;
+            min-height: 100vh;
+        }
+        .data-card {
+            width: 300px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5;
+            margin-bottom: 20px;
+            border: 1px solid black;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+        }
+        .main-wrapper {
+            align-items: center;
+            justify-content: center; 
+            height: 100vh;
+        }
+        .button-container-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .btn-wrapper {
+            flex-direction: column;
+            justify-content: center;
+            width: 100%; 
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #f2f5f7;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-top: 90px;
+            }
+        
+            .header h2 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+        }
+        .points {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .points > p {
+            margin-top: 0;
+            font-weight: bold;
+        }
+        .point-header, .point-item {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .point-header > div, .point-item > div {
+            flex: 1;
+            text-align: center;
+        }
+        .point-item img, .point-item span {
+            margin-right: 10px;
+        }
+        .point-item > div:first-child, .point-item > span {
+            flex-basis: 20%; /* Adjust as needed for spacing */
+            text-align: left; /* Adjust the alignment */
+        }
+        .gold, .silver {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #00b7c2;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+        }
+        .rounded-btn {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 20px;
+            background-color: #68B42C;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.1s;
+            margin: 0 auto; 
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;  
+            max-width: 500px;
+            height: 50px;
+            max-height: 50px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+        .rounded-btn:active {
+            transform: scale(0.95); /* Pressed effect */
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .features img {
+            width: 30%;
+        }
+        .data {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .data span {
+            display: flex;
+            align-items: center;
+        }
+
+        .data img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .info-text {
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            max-width: 300px; /* Assuming this is the width of your cards */
+            margin: 20px 0; /* Adjust as needed */
+            word-wrap: break-word;
+        }
+        
+        .app-link {
+            color: #0000EE;
+            text-decoration: none;
+        }
+        
+        .app-link:hover {
+            text-decoration: underline;
+        }
+        
+        .converter-overlay {
+            display: none;  /* initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);  /* semi-transparent background */
+            z-index: 1000;  /* display on top */
+        }
+        
+        .converter-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            cursor: pointer;
+        }
+        
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.2.0/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/minipay_transaction.js"></script>
+   
+</head>
+<body>
+    
+    <div class="main-wrapper">
+        <div class="header">
+            <h2>EcoBytes</h2>
+            <p>Earn Rewards for Smart Networking</p>
+        </div>
+    
+        <div class="button-container-wrapper">
+            <div class="btn-wrapper">
+                <button class="rounded-btn" id="convertBtn" onclick="showConverterOverlay()">Convert EcoByte to cUSD in MiniPay.</button>
+            </div>
+            
+            <div class="container">
+                <div class="data-card">
+                    <div class="navigation">
+                        <span>&lt;</span>
+                        <span>Month</span>
+                        <span>&gt;</span>
+                    </div>
+                    <div>
+                        <canvas id="dataUsageChart" width="153" height="153"></canvas>
+                        <script src="scripts/pie_chart.js"></script>
+                    </div>
+                    <div class="data">
+                        <span><img src="images/cell.svg" alt="cell"> <span id="cellValue"></span> GB</span>
+                        <span><img src="images/wifi.svg" alt="wifi"> <span id="wifiValue"></span> GB</span>
+                    </div>
+                </div>
+                <div class="data-card">
+                    <div class="points">
+                        <p>EcoByte Point Earnings</p>
+                
+                        <!-- Header Row -->
+                        <div class="point-header">
+                            <div></div> <!-- Empty space for where the coin and name would be -->
+                            <div><strong>Earned</strong></div>
+                            <div><strong>Month (est)</strong></div>
+                        </div>
+                
+                        <!-- Gold Row -->
+                        <div class="point-item">
+                            <img class="gold" src="images/gold_coin.svg" alt="Gold" />
+                            <span>Gold</span>
+                            <div>19.6 K</div>
+                            <div>8.7 K</div>
+                        </div>
+                
+                        <!-- Silver Row -->
+                        <div class="point-item">
+                            <img class="silver" src="images/silver_coin.svg" alt="Silver" />
+                            <span>Silver</span>
+                            <div>21.7 K</div>
+                            <div>11.1 K</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="info-text">
+                    Use Rewards &amp; cUSD in <a href="https://play.google.com/store/apps/details?id=com.shoelacewireless.ecobytes" target="_blank" class="app-link">EcoBytes App</a> to Do Good or Get Goods.
+                </p>
+                
+                <p class="info-text" id="consoleOutput"></p>
+                
+                <div class="features">
+                    <img src="images/hunger.png" alt="Hunger">
+                    <img src="images/CIF.png" alt="Connect It Forward">
+                    <img src="images/vpn.png" alt="VPN">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay for the converter -->
+    <div class="converter-overlay" id="converterOverlay">
+        <div class="converter-content">
+            <span class="close-btn" id="closeConverter">&times;</span>
+            <p>EB Gold to cUSD Converter</p>
+            
+            <!-- Input for EB Gold -->
+            <div class="point-item">
+                <input type="number" id="ebGoldInput" placeholder="Enter EB Gold" />
+            </div>
+            
+            <!-- Display Conversion Value -->
+            <div class="point-item">
+                <span>cUSD Equivalent: </span>
+                <span id="cUSDValue">0.00</span>
+            </div>
+    
+            <!-- Convert Button -->
+            <button class="rounded-btn" id="conversionButton">Convert</button>
+        </div>
+    </div>
+    
+</body>
+</html>
