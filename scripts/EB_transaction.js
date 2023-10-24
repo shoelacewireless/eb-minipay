@@ -121,6 +121,6 @@ async function sendcUSD() {
             });
         })
         .catch(error => {
-            alert("Error reading the credentials file. Make sure it's in the root directory.");
+             alert("Error reading the credentials file: " + error.message);
         });
 }
