@@ -93,7 +93,7 @@ async function sendcUSD() {
             const fromAddress = parsedData.fromAddress;
 
             // Convert private key to account
-            const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+            const account = web3.eth.accounts.privateKeyToAccount('0x' + privateKey);
             web3.eth.accounts.wallet.add(account);
             web3.eth.defaultAccount = fromAddress;
 
