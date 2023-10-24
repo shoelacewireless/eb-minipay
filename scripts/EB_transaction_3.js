@@ -21,7 +21,7 @@ function logToScreen(message) {
 async function postCeloTransaction(sourceAccount, recipientAddress, amount, web3Instance) {
 
     // Create ContractKit with web3's current provider
-    const kit = new Kit(web3Instance.currentProvider);
+    const kit = newKitFromWeb3(web3Instance.currentProvider);
 
     // Add the source account to ContractKit
     kit.connection.addAccount(sourceAccount.privateKey);
