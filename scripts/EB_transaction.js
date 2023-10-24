@@ -87,8 +87,10 @@ async function sendcUSD() {
     fetch('credentials.json')
         .then(response => response.json())
         .then(data => {
-            const privateKey = data.privateKey;
-            const fromAddress = data.fromAddress;
+
+            const parsedData = JSON.parse(data);
+            const privateKey = parsedData.privateKey;
+            const fromAddress = parsedData.fromAddress;
 
             // Convert private key to account
             const account = web3.eth.accounts.privateKeyToAccount(privateKey);
