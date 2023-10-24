@@ -1,3 +1,5 @@
+import { newKitFromWeb3 } from "@celo/contractkit";
+
 // Initialize web3 with MiniPay provider
 function initializeWeb3() {
     if (window.ethereum && window.ethereum.isMiniPay) {
