@@ -9,7 +9,7 @@ function initializeWeb3() {
     }
 }
 
-const ERC20_ABI = const ERC20_ABI = [
+const ERC20_ABI = [
     {
         "constant": true,
         "inputs": [],
