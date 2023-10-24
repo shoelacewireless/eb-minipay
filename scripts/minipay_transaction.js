@@ -1,10 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Ensure the overlay doesn't close when clicking within it.
-    document.querySelector('.converter-content').addEventListener('click', function(event) {
-        event.stopPropagation();
-    });
-        
     // Initialize web3 with MiniPay provider
     function initializeWeb3() {
         if (window.ethereum && window.ethereum.isMiniPay) {
@@ -102,29 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     window.initiateTransaction = function() {
         sendTransaction();
     };
-    
-    // Show overlay when needed
-    
-    window.showConverterOverlay = function(){
-        document.getElementById("converterOverlay").style.display = "block";
-    }
-    
-    //Hide Overlay
-    document.addEventListener('click', function(event) {
-        var overlay = document.getElementById('converterOverlay');
-        var content = document.querySelector('.converter-content');
-        if (!content.contains(event.target)) { // If the clicked element isn't inside the converter-content
-            overlay.style.display = 'none'; // Hide the overlay
-        }
-    });
-    
-    
-    
-    // Code to close the overlay when the close button is clicked
-    document.getElementById('closeConverter').addEventListener('click', function() {
-        document.getElementById('converterOverlay').style.display = 'none';
-    });
-    
+
     // Existing conversion logic
     document.getElementById("conversionButton").addEventListener("click", function() {
         const ebGold = document.getElementById("ebGoldInput").value;

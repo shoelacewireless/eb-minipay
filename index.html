@@ -205,31 +205,59 @@
             text-decoration: underline;
         }
         
-        .converter-overlay {
-            display: none;  /* initially hidden */
+        /* Conversion Overlay style*/
+        .overlay {
+            display: none;
             position: fixed;
             top: 0;
+            right: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);  /* semi-transparent background */
-            z-index: 1000;  /* display on top */
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
         }
         
-        .converter-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
+        .conversion-box {
+            position: relative;
             background-color: #fff;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 250px; /* adjust width as required */
+            text-align: center;
         }
         
-        .close-btn {
+        .conversion-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .conversion-result {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .convert-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .dismiss-btn {
             position: absolute;
             right: 10px;
-            top: 5px;
+            top: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
             cursor: pointer;
         }
         
@@ -239,6 +267,7 @@
     <script src="scripts/minipay_transaction.js"></script>
    
 </head>
+
 <body>
     
     <div class="main-wrapper">
@@ -249,7 +278,7 @@
     
         <div class="button-container-wrapper">
             <div class="btn-wrapper">
-                <button class="rounded-btn" id="convertBtn" onclick="showConverterOverlay()">Convert EcoByte to cUSD in MiniPay.</button>
+                <button class="rounded-btn" id="showOverlay">Convert EcoByte to cUSD in MiniPay.</button>
             </div>
             
             <div class="container">
@@ -300,8 +329,6 @@
                     Use Rewards &amp; cUSD in <a href="https://play.google.com/store/apps/details?id=com.shoelacewireless.ecobytes" target="_blank" class="app-link">EcoBytes App</a> to Do Good or Get Goods.
                 </p>
                 
-                <p class="info-text" id="consoleOutput"></p>
-                
                 <div class="features">
                     <img src="images/hunger.png" alt="Hunger">
                     <img src="images/CIF.png" alt="Connect It Forward">
@@ -309,29 +336,27 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Overlay for the converter -->
-    <div class="converter-overlay" id="converterOverlay">
-        <div class="converter-content">
-            <span class="close-btn" id="closeConverter">&times;</span>
-            <p>EB Gold to cUSD Converter</p>
-            
-            <!-- Input for EB Gold -->
-            <div class="point-item">
-                <input type="number" id="ebGoldInput" placeholder="Enter EB Gold" />
+        
+        <!-- Conversion Overlay -->
+         <div class="overlay">
+            <div class="conversion-box">
+                <button id="dismissOverlay" class="dismiss-btn">X</button>
+                <p>1,000 EB Gold =0.01</p>
+                <div class="conversion-controls">
+                    <button>-</button>
+                    <span>1,000</span>
+                    <button>+</button>
+                </div>
+                <div class="conversion-result">
+                    <span>0.01</span>
+                    <img src="currency-symbol.png" alt="Currency Symbol">
+                </div>
+                <button class="convert-btn">Convert</button>
             </div>
-            
-            <!-- Display Conversion Value -->
-            <div class="point-item">
-                <span>cUSD Equivalent: </span>
-                <span id="cUSDValue">0.00</span>
-            </div>
-    
-            <!-- Convert Button -->
-            <button class="rounded-btn" id="conversionButton">Convert</button>
         </div>
+        
     </div>
     
+<script src="scripts/overlay.js"></script>
 </body>
 </html>
