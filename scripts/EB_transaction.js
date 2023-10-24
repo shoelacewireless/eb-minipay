@@ -83,13 +83,12 @@ async function sendcUSD() {
         return;
     }
 
-    // Read from the text file (Note: this method only works locally due to browser security restrictions)
-    fetch('credentials.txt')
-        .then(response => response.text())
+    // Read from the JSON file
+    fetch('credentials.json')
+        .then(response => response.json())
         .then(data => {
-            const lines = data.split('\n');
-            const privateKey = lines[0].split('=')[1].trim();
-            const fromAddress = lines[1].split('=')[1].trim();
+            const privateKey = data.privateKey;
+            const fromAddress = data.fromAddress;
 
             // Convert private key to account
             const account = web3.eth.accounts.privateKeyToAccount(privateKey);
@@ -102,7 +101,7 @@ async function sendcUSD() {
             // Hardcoded amount for testing
             const amount = "0.01";
 
-            const cUSDTokenAddress = "0x765de816845861e75a25fca122bb6898b8b1282a"; // Replace with your cUSD contract address https://celo.academy/t/3-simple-steps-to-connect-your-metamask-wallet-to-celo/84
+            const cUSDTokenAddress = "0x765de816845861e75a25fca122bb6898b8b1282a"; // Replace with your cUSD contract address
             const cUSDContract = new web3.eth.Contract(ERC20_ABI, cUSDTokenAddress);
             const amountInWei = web3.utils.toWei(amount, 'ether');
 
@@ -122,6 +121,6 @@ async function sendcUSD() {
             });
         })
         .catch(error => {
-            alert("Error reading the credentials file. Make sure it's in the same directory as this HTML file.");
+            alert("Error reading the credentials file. Make sure it's in the root directory.");
         });
 }
