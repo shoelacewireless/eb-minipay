@@ -38,7 +38,7 @@ async function postCeloTransaction(sourceAccount, recipientAddress, amount, web3
     return await celotx.waitReceipt();
 }
 
-async function sendToken() {
+async function sendcUSD() {
     const web3 = initializeWeb3();
 
     if (!web3) {
