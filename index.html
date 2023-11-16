@@ -28,7 +28,7 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #18191A;
             margin: 0;
             padding: 0;
             display: flex;
@@ -38,19 +38,164 @@
             padding-top: 90px;
             min-height: 100vh;
         }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #f2f5f7;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+        }
         .data-card {
             width: 300px;
             background-color: #ffffff;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5;
+            border-radius: 0px;
             margin-bottom: 20px;
             border: 1px solid black;
         }
-        .navigation {
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 90px;
+            }
+        
+            .header h2 {
+                font-size: 24px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+        }
+
+        /* EcoByte Login Style*/
+
+        .login-overlay {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(24, 25, 26, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 350px;
+            background-color: #f2f5f7;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+        }
+
+        .login-badge-container {
+            max-width: 265px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            text-align: center;
         }
+        .login-badge-container img {
+            width: 100px;
+            height: 100px;
+        }
+        .login-badge-container p {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .login-input-container {
+            max-width: 265px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .login-input-container p {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .login-input-container p.title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .login-input-container form {
+            max-width: 265px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-input-container form input {
+            max-width: 240px;
+            font-size: 24px;
+            border: 1px solid black;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .login-input-container form button {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            background-color: #68B42C;
+            border: 1px solid black;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .login-input-container form button:hover {
+          background-color: #45a049;
+        }
+
+        .phone-input[type="tel"] {
+          font-size: 1rem;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        }
+
+        .login-input-container p.privacy {
+            margin-top: 20px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .login-input-container p.privacy a{
+          color: #1a0dab;
+          text-decoration: underline;
+        }
+
+        .login-input-container p.privacy a:hover {
+          color: #0c4b8e;
+        }
+
+        /**/
         .main-wrapper {
             align-items: center;
             justify-content: center; 
@@ -68,35 +213,9 @@
             width: 100%; 
             max-width: 500px;
             margin: 0 auto;
-            margin-bottom: 20px;
         }
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background-color: #f2f5f7;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            border-radius: 15px;
-            border: 2px solid black;
-        }
-        @media (max-width: 768px) {
-            body {
-                padding-top: 90px;
-            }
-        
-            .header h2 {
-                font-size: 24px;
-            }
-            
-            .header p {
-                font-size: 16px;
-            }
-        }
+
+        /* EcoBytes Points style*/
         .points {
             width: 100%;
             max-width: 300px;
@@ -128,6 +247,8 @@
             height: 20px;
             margin-right: 10px;
         }
+
+        /* Conversion Button style*/
         .btn {
             display: block;
             width: 100%;
@@ -140,11 +261,13 @@
             border-radius: 5px;
         }
         .rounded-btn {
+            font-size: 24px;
             font-weight: bold;
+            padding: 10px 20px;
             display: block;
             margin-bottom: 20px;
             background-color: #68B42C;
-            color: #fff;
+            color: black;
             text-align: center;
             border: none;
             border-radius: 5px;
@@ -160,6 +283,7 @@
             margin-top: 20px;
             flex-grow: 1;
             flex-shrink: 1;
+            overflow: hidden;
         }
         .rounded-btn:active {
             transform: scale(0.95); /* Pressed effect */
@@ -188,11 +312,11 @@
             margin-right: 10px;
         }
         .info-text {
-            font-weight: bold;
+            font-family: 'Inter', sans-serif;
             text-align: center;
             width: 100%;
-            max-width: 300px; /* Assuming this is the width of your cards */
-            margin: 20px 0; /* Adjust as needed */
+            max-width: 300px;
+            margin: 10px 0;
             word-wrap: break-word;
         }
         
@@ -204,9 +328,19 @@
         .app-link:hover {
             text-decoration: underline;
         }
-        
+
+        .createAccountLink {
+            font-size: 18px;
+            color: #0000EE;
+            text-decoration: none;
+        }
+
+        .createAccountLink:hover {
+            text-decoration: underline;
+        }
+
         /* Conversion Overlay style*/
-        .overlay {
+        .conversion-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -217,59 +351,312 @@
             justify-content: center;
             align-items: center;
         }
-        
-        .conversion-box {
-            position: relative;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            width: 250px; /* adjust width as required */
-            text-align: center;
-        }
-        
-        .conversion-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-        }
-        
-        .conversion-result {
+
+        .conversion-container {
+            width: 100%;
+            max-width: 300px;
+            background-color: #f2f5f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+            padding-bottom: 30px;
         }
-        
-        .convert-btn {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
+        .conversion-container img{
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-top: 20px;
+        }
+
+        .conversion-container button {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            background-color: #68B42C;
+            border: 1px solid black;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .conversion-container button.conversion-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 50px;
+        }
+
+        .conversion-container button:hover {
+          background-color: #45a049;
+        }
+
+        .conversion-container button:disabled {
+            cursor: default;
+            background-color: #b0de81;
+            padding: 0px;
+        }
+
+        .conversion-container .spinner {
+            display: none;
+            width: 60px; 
+            height: 60px;
+            transform: translateY(-8px);
+        }
+
+        .conversion-container input {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            font-size: 20px;
+            border: 2px solid #000;
+            display: inline-block;
+            margin: 20px 10px;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .conversion-container .counter-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .conversion-container .counter-container button{
+            font-size: 24px;
+            width: 40px;
+            height: 50px;
+            border: none;
+            border-radius: 0px;
+            background-color: #cccccc;
+            cursor: pointer;
+            user-select: none;
+            padding: 5px;
+        }
+
+        .conversion-container .gold-container {
+            width: 100%;
+            max-width: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            border: 2px solid #000;
+            padding: 10px 15px;
+            margin-top: 30px;
+        }
+
+        .conversion-container .gold-container p{
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .conversion-container .gold-container .goldLabel{
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .conversion-container .gold-container .goldLabel p{
+            margin-left: 8px;
+        }
+
+        .conversion-container .gold-container img {
+            width: 30px;
+            height: 30px;
+            margin-top: 0px;
+        }
+        
+        .conversion-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .conversion-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: 6px;
+            right: 6px;
+        }
+
+        /*Data usage Image*/
+        .data-card-pie-chart {
+            width: 300px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .chart-image {
+            margin-top: 15px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .navigation {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+
+        /* Network Efficiency Style*/
+        .network-efficiency {
+            width: 250px;
+            font-size: 16px;
+            padding: 0 2.5px; 
+            font-weight: bold;
+        }
+
+        .efficiency-dots {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-top: 10px;
         }
-        
-        .dismiss-btn {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
+
+        .dot {
+            flex: 1;
+            height: 25px;
+            border-radius: 12.5px;
+            margin: 0 2.5px;
+            border: 1px solid black;
         }
-        
+
+        .active {
+            background-color: #64B630;
+        }
+
+        .inactive {
+            background-color: #FFFFFF;
+        }
+
+        /*Divider Style*/
+        .divider {
+            height: 4px;
+            width: 300px;
+            background-color: #808080;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        /*Success Overlay Style*/
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .success-overlay-container {
+            width: 100%;
+            max-width: 300px;
+            background-color: #f2f5f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+            padding-bottom: 30px;
+        }
+
+       .success-overlay-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .success-overlay-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: 6px;
+            right: 6px;
+        }
+
+        .success-overlay-container .dismiss-button:hover {
+            color: #999;
+        }
+
+        .success-overlay-content {
+            text-align: center; 
+            padding: 0 20px;
+            margin-top: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        .success-overlay-content p:first-child {
+            font-weight: bold; /* Makes the first paragraph bold */
+        }
+
+        /* Optional: If you want only the first two paragraphs to have the bottom margin */
+        .success-overlay-content p:nth-child(1),
+        .success-overlay-content p:nth-child(2),
+        .success-overlay-content p:nth-child(3) {
+            margin-bottom: 20px;
+        }
+
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.2.0/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@celo/contractkit@5.1.0/lib/index.min.js"></script>
-
-    <script src="scripts/EB_transaction_3.js"></script>
+    <script src="scripts/EB_transaction.js"></script>
 </head>
 
 <body>
+
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+          <div class="login-badge-container">
+            <img src="images/ecobyte-badge.png" alt="Ecobytes Badge">
+            <p>Earn Rewards for Smart Networking</p>
+          </div>
+          <div class="login-input-container">
+            <p class="title">Link your EcoBytes</p>
+            <p class="title">Account to MiniPay</p>
+            <form id="loginForm">
+              <input type="tel" id="phone" name="phone" placeholder="Enter Phone #" pattern="\d*" required>
+              <button type="submit">Continue</button>
+            </form>
+            <p class="privacy">
+              By proceeding you are agreeing to our <a href="https://www.shoelacewireless.com/eb/tos-ecobytes" target="_blank">Terms of Service</a>. You can also learn how we protect your data in our <a href="https://www.shoelacewireless.com/eb/pp" target="_blank">Privacy Statement</a>.
+            </p>
+            <p><a href="https://3cobytes.com/" target="_blank" class="createAccountLink">Or Create an Account</a></p>
+          </div>
+        </div>
+    </div>
     
     <div class="main-wrapper">
         <div class="header">
@@ -278,29 +665,41 @@
         </div>
     
         <div class="button-container-wrapper">
+
+             <!-- Conversion Button -->
             <div class="btn-wrapper">
-                <button class="rounded-btn" id="showOverlay">Convert EcoByte to cUSD in MiniPay.</button>
+                <button class="rounded-btn" id="showOverlay">Convert EcoBytes in MiniPay</button>
             </div>
-            
+
             <div class="container">
-                <div class="data-card">
+
+                <!-- Data Usage -->
+                <div class="data-card-pie-chart">
                     <div class="navigation">
-                        <span>&lt;</span>
-                        <span>Month</span>
-                        <span>&gt;</span>
+                        <!--<span>&lt;</span> -->
+                        <span>Monthly Data Usage</span>
+                        <!-- <span>&gt;</span> -->
                     </div>
-                    <div>
-                        <canvas id="dataUsageChart" width="153" height="153"></canvas>
-                        <script src="scripts/pie_chart.js"></script>
-                    </div>
-                    <div class="data">
-                        <span><img src="images/cell.svg" alt="cell"> <span id="cellValue"></span> GB</span>
-                        <span><img src="images/wifi.svg" alt="wifi"> <span id="wifiValue"></span> GB</span>
+                    <img src="images/pie_chart.png" alt="Data Usage Chart" class="chart-image">        
+                </div>
+
+                <!-- Network Efficiency -->
+                <div class="data-card">
+                    <div class="network-efficiency">
+                        Network Efficiency
+                        <div class="efficiency-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot inactive"></div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="data-card">
                     <div class="points">
-                        <p>EcoByte Point Earnings</p>
+                        <p>EcoByte Earnings</p>
                 
                         <!-- Header Row -->
                         <div class="point-header">
@@ -326,8 +725,11 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="divider"></div>
+
                 <p class="info-text">
-                    Use Rewards &amp; cUSD in <a href="https://play.google.com/store/apps/details?id=com.shoelacewireless.ecobytes" target="_blank" class="app-link">EcoBytes App</a> to Do Good or Get Goods.
+                    Use Rewards &amp; cUSD in <a href="https://3cobytes.com/" target="_blank" class="app-link">EcoBytes App</a> Marketplace to Do Good &amp; Get Goods.
                 </p>
 
                 <div id="log"></div>
@@ -341,26 +743,52 @@
         </div>
         
         <!-- Conversion Overlay -->
-         <div class="overlay">
-            <div class="conversion-box">
-                <button id="dismissOverlay" class="dismiss-btn">X</button>
-                <p>1,000 EB Gold =0.01</p>
-                <div class="conversion-controls">
-                    <button>-</button>
-                    <span>1,000</span>
-                    <button>+</button>
+         <div class="conversion-overlay">
+            <div class="conversion-container">
+                <div class="dismiss-container">
+                    <button id="dismissOverlay">X</button>
                 </div>
-                <div class="conversion-result">
-                    <span>0.01</span>
-                    <img src="currency-symbol.png" alt="Currency Symbol">
+                <div class="gold-container">
+                    <div class="goldLabel">
+                        <img src="images/gold_coin.svg" alt="Gold"/>
+                        <p>Gold</p>
+                    </div>
+                    <p id="eb_wallet_gold">10K</p>
                 </div>
-                <button class="convert-btn">Convert</button>
+                <img src="images/gold_coin.svg" alt="Gold"/>
+                <div class="counter-container">
+                    <button id="decrement">-</button>
+                    <input type="text" id="eb_gold_value" value="1,000" readonly>
+                    <button id="increment">+</button>
+                </div>
+                <p>1,000 EB Gold = 0.001 cUSD</p>
+                <img src="images/cusd.png" alt="cUSD"/>
+                <input type="text" id="cusd_value" value="0.001" readonly>
+                <button id="convert-btn" class="conversion-button">
+                    <span id="button-text">Convert</span>
+                    <img  id="loadingSpinner" class="spinner" src="images/spinner.svg" alt="Loading..."/>
+                </button>
+            </div>
+        </div>
+
+        <!-- Success Overlay -->
+        <div class="success-overlay" id="successOverlay">
+            <div class="success-overlay-container">
+                <div class="dismiss-container">
+                    <button id="closeSuccessOverlay">X</button>
+                </div>
+                <div class="success-overlay-content">
+                    <p>Your rewards have been sent to your MiniPay Wallet.</p>
+                    <p>Congratulations for your smart networkin.</p>
+                    <p>You can enjoy more rewards or gift them in the <a href="https://3cobytes.com/" target="_blank" class="app-link">EcoBytes App</a>.</p>
+                    <p>Earn more rewards by <a href="#" target="_blank" class="app-link">referring</a> friends too.</p>
+                </div>
             </div>
         </div>
         
     </div>
     
 <script src="scripts/overlay.js"></script>
-<script>document.querySelector('.convert-btn').addEventListener('click',sendcUSD);</script>
+<script src="scripts/login_functions.js" defer></script>
 </body>
 </html>
