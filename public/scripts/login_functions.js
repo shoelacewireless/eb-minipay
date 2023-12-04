@@ -20,3 +20,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+
+//Blur for not logged users
+function isUserLoggedIn() {
+    // This function currently always returns false
+    // Replace with actual login check logic later
+    return false;
+}
+
+function applyBlurEffect() {
+    // Define an array with your different class names
+    var classNames = ['.chart-image', '.currency-number', '.efficiency-dots'];
+
+    // Iterate over each class
+    classNames.forEach(className => {
+        // Select all elements with the current class
+        var elements = document.querySelectorAll(className);
+        elements.forEach(element => {
+            if (!isUserLoggedIn()) {
+                element.classList.add('blur-effect');
+            } else {
+                element.classList.remove('blur-effect');
+            }
+        });
+    });
+}
+
+window.onload = applyBlurEffect;

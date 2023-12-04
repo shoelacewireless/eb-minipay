@@ -628,6 +628,16 @@
             margin-bottom: 20px;
         }
 
+        /*Blur styles*/
+        .blur-effect {
+            filter: blur(5px);
+            transition: filter 0.3s;
+        }
+
+        .currency-number {
+            font-family: 'Inter', sans-serif;
+        }
+
     </style>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -712,16 +722,16 @@
                         <div class="point-item">
                             <img class="gold" src="images/gold_coin.svg" alt="Gold" />
                             <span>Gold</span>
-                            <div>19.6 K</div>
-                            <div>8.7 K</div>
+                            <div class="currency-number">19.6 K</div>
+                            <div class="currency-number">8.7 K</div>
                         </div>
                 
                         <!-- Silver Row -->
                         <div class="point-item">
                             <img class="silver" src="images/silver_coin.svg" alt="Silver" />
                             <span>Silver</span>
-                            <div>21.7 K</div>
-                            <div>11.1 K</div>
+                            <div class="currency-number">21.7 K</div>
+                            <div class="currency-number">11.1 K</div>
                         </div>
                     </div>
                 </div>
