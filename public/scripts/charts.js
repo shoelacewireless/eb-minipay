@@ -17,16 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const degreesPerSegment = 360 / items.length;
 
-     items.forEach((item, index) => {
+    items.forEach((item, index) => {
 
         const segment = document.createElement('div');
         segment.className = 'segment';
-        segment.textContent = item.label;
         segment.style.backgroundColor = item.color;
         const rotateAngle = degreesPerSegment * index;
         segment.style.transform = `rotate(${rotateAngle}deg)`;
 
-        console.log(`Segment ${index + 1}: ${item.label}, Angle: ${rotateAngle}`);
+        // Create the span for the label
+        const labelSpan = document.createElement('span');
+        labelSpan.textContent = item.label;
+        labelSpan.className = 'segment-label';
+        segment.appendChild(labelSpan);
+
         wheel.appendChild(segment);
     });
 
@@ -52,6 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
+    function removeSegmentHighlights() {
+        document.querySelectorAll('.segment').forEach(segment => {
+            segment.classList.remove('segment-highlighted');
+        });
+    }
+
     // Spin button event listener
     spinButton.addEventListener('click', function() {
         const segmentIndex = calculateSegment();
@@ -59,6 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const segmentDegrees = 360 / items.length; // Degrees per segment
         const offsetDegrees = segmentDegrees * segmentIndex; // Offset to align with the chosen segment
         const totalDegrees = spinDegrees + offsetDegrees;
+
+        removeSegmentHighlights();
 
         // Spin the wheel
         wheel.style.transition = 'transform 4s ease-out';
@@ -69,12 +81,18 @@ document.addEventListener('DOMContentLoaded', function() {
             wheel.style.transition = 'none';
             const normalizedDegrees = totalDegrees % 360;
             wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
+            // Highlight the winning segment
+            /*const winningSegment = document.querySelector('.segment:nth-child(' + (segmentIndex + 1) + ')');
+            if (winningSegment) {
+                winningSegment.classList.add('segment-highlighted');
+            }*/
             alert(`Congratulations! You won: ${items[segmentIndex].label}`);
         }, { once: true });
     });
 
     // Close button event listener
     document.getElementById('closeSpinWheel').addEventListener('click', function() {
+        removeSegmentHighlights();
         spinWheelOverlay.style.display = 'none';
     });
 
