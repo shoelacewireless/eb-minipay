@@ -1,32 +1,58 @@
+var sharedState = {
+    isLoggedIn: false
+};
+
+function setLoginStatus(isLoggedIn) {
+    sharedState.isLoggedIn = isLoggedIn;
+}
+
+function getLoginStatus() {
+    return sharedState.isLoggedIn;
+}
+
+function updateLoginStatus(isLoggedIn) {
+    // Dispatch a custom event with the login status
+    var event = new CustomEvent('loginStatusChanged', { detail: { loggedIn: isLoggedIn } });
+    document.dispatchEvent(event);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-  var loginForm = document.getElementById('loginForm');
+    const loginForm = document.getElementById('loginForm');
+    const phoneInput = document.getElementById('phone');
+   
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-  loginForm.addEventListener('submit', function(event) {
-    // Prevent the form from submitting the traditional way
-    event.preventDefault();
+        var phoneNumber = phoneInput.value;
+        var isNumber = /^\d+$/.test(phoneNumber); // Regex to check if string contains only digits
 
-    // Validate the phone number
-    var phoneInput = document.getElementById('phone');
-    var phoneNumber = phoneInput.value;
-    var isNumber = /^\d+$/.test(phoneNumber); // Regex to check if string contains only digits
-
-    if (phoneNumber.length > 0 && isNumber) {
-      // If the input is valid, close the overlay
-      document.getElementById('loginOverlay').style.display = 'none';
-    } else {
-      // If the input is invalid, inform the user
-      alert('Please enter a valid phone number.');
-      phoneInput.focus();
-    }
-  });
+        if (phoneNumber.length > 0 && isNumber) {
+            setLoginStatus(true)
+            UpdateUI();  
+            loginOverlay.style.display = 'none';
+        } else {
+            alert('Please enter a valid phone number.');
+            phoneInput.focus();
+            UpdateUI();
+            setLoginStatus(false)
+        }
+    });
 });
 
-
-//Blur for not logged users
 function isUserLoggedIn() {
-    // This function currently always returns false
-    // Replace with actual login check logic later
-    return false;
+  UpdateUI(); 
+  return getLoginStatus()
+}
+
+function UpdateUI() {
+  const showOverlayBtn = document.getElementById('showOverlay');
+  if(getLoginStatus()) {
+    showOverlayBtn.textContent = "Convert EcoBytes in MiniPay";
+  } else {
+    showOverlayBtn.textContent = "LOGIN"
+  }
+
+  applyBlurEffect()
 }
 
 function applyBlurEffect() {
@@ -38,7 +64,7 @@ function applyBlurEffect() {
         // Select all elements with the current class
         var elements = document.querySelectorAll(className);
         elements.forEach(element => {
-            if (!isUserLoggedIn()) {
+            if (!getLoginStatus()) {
                 element.classList.add('blur-effect');
             } else {
                 element.classList.remove('blur-effect');
@@ -47,4 +73,4 @@ function applyBlurEffect() {
     });
 }
 
-window.onload = applyBlurEffect;
+window.onload = isUserLoggedIn;
