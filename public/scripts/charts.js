@@ -1,144 +1,85 @@
-var padding = {top:20, right:40, bottom:0, left:0},
-            w = 500 - padding.left - padding.right,
-            h = 500 - padding.top  - padding.bottom,
-            r = Math.min(w, h)/2,
-            rotation = 0,
-            oldrotation = 0,
-            picked = 100000,
-            oldpick = [],
-            color = d3.scale.category20();
-        var data = [
-                    {"label":"Dell LAPTOP",  "value":1,  "question":"What CSS property is used for specifying the area between the content and its border?"},
-                    {"label":"IMAC PRO",  "value":2,  "question":"What CSS property is used for changing the font?"},
-                    {"label":"SUZUKI",  "value":3,  "question":"What CSS property is used for changing the color of text?"},
-                    {"label":"HONDA",  "value":4,  "question":"What CSS property is used for changing the boldness of text?"},
-                    {"label":"FERRARI",  "value":5,  "question":"What CSS property is used for changing the size of text?"},
-                    {"label":"APARTMENT",  "value":6,  "question":"What CSS property is used for changing the background color of a box?"},
-                    {"label":"IPAD PRO",  "value":7,  "question":"Which word is used for specifying an HTML tag that is inside another tag?"},
-                    {"label":"LAND",  "value":8,  "question":"Which side of the box is the third number in: margin:1px 1px 1px 1px; ?"},
-                    {"label":"MOTOROLLA",  "value":9,  "question":"What are the fonts that don't have serifs at the ends of letters called?"},
-                    {"label":"BMW", "value":10, "question":"With CSS selectors, what character prefix should one use to specify a class?"}
-        ];
-        var svg = d3.select('#chart')
-            .append("svg")
-            .data([data])
-            .attr("width",  w + padding.left + padding.right)
-            .attr("height", h + padding.top + padding.bottom);
-        var container = svg.append("g")
-            .attr("class", "chartholder")
-            .attr("transform", "translate(" + (w/2 + padding.left) + "," + (h/2 + padding.top) + ")");
-        var vis = container
-            .append("g");
-            
-        var pie = d3.layout.pie().sort(null).value(function(d){return 1;});
-        // declare an arc generator function
-        var arc = d3.svg.arc().outerRadius(r);
-        // select paths, use arc generator to draw
-        var arcs = vis.selectAll("g.slice")
-            .data(pie)
-            .enter()
-            .append("g")
-            .attr("class", "slice");
-            
-        arcs.append("path")
-            .attr("fill", function(d, i){ return color(i); })
-            .attr("d", function (d) { return arc(d); });
-        // add the text
-        arcs.append("text").attr("transform", function(d){
-                d.innerRadius = 0;
-                d.outerRadius = r;
-                d.angle = (d.startAngle + d.endAngle)/2;
-                return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius -10) +")";
-            })
-            .attr("text-anchor", "end")
-            .text( function(d, i) {
-                return data[i].label;
-            });
-        container.on("click", spin);
-        function spin(d){
-            
-            container.on("click", null);
-            //all slices have been seen, all done
-            console.log("OldPick: " + oldpick.length, "Data length: " + data.length);
-            if(oldpick.length == data.length){
-                console.log("done");
-                container.on("click", null);
-                return;
+document.addEventListener('DOMContentLoaded', function() {
+    const spinWheelOverlay = document.getElementById('spinWheelOverlay');
+    const spinButton = document.getElementById('spinButton');
+    const wheel = document.querySelector('.wheel');
+
+    // Define the items with their odds as percentages (make sure they sum up to 100)
+   const items = [
+        { number: 1, label: 'EB Silver 10,000', odds: 12.5, color: '#FF0000' },
+        { number: 2, label: 'EB Silver 50,000', odds: 12.5, color: '#FF7F00' },
+        { number: 3, label: 'EB Silver 100,000', odds: 12.5, color: '#FFFF00' },
+        { number: 4, label: 'EB Gold 5,000', odds: 12.5, color: '#008000' },
+        { number: 5, label: 'EB Gold 10,000', odds: 12.5, color: '#0000FF' },
+        { number: 6, label: 'EB Gold 50,000', odds: 12.5, color: '#4B0082' },
+        { number: 7, label: 'Celo cUSD 50', odds: 12.5, color: '#EE82EE' },
+        { number: 8, label: 'Celo cUSD 10', odds: 12.5, color: '#40E0D0' }
+    ];
+
+    const degreesPerSegment = 360 / items.length;
+
+     items.forEach((item, index) => {
+
+        const segment = document.createElement('div');
+        segment.className = 'segment';
+        segment.textContent = item.label;
+        segment.style.backgroundColor = item.color;
+        const rotateAngle = degreesPerSegment * index;
+        segment.style.transform = `rotate(${rotateAngle}deg)`;
+
+        console.log(`Segment ${index + 1}: ${item.label}, Angle: ${rotateAngle}`);
+        wheel.appendChild(segment);
+    });
+
+    // This function calculates which segment the wheel should stop on
+    function calculateSegment() {
+        let rand = Math.random() * 100; // Random number between 0 and 100
+        let sumOdds = 0;
+
+        for (let i = 0; i < items.length; i++) {
+            sumOdds += items[i].odds;
+            if (rand <= sumOdds) {
+                return i;
             }
-            var  ps       = 360/data.length,
-                 pieslice = Math.round(1440/data.length),
-                 rng      = Math.floor((Math.random() * 1440) + 360);
-                
-            rotation = (Math.round(rng / ps) * ps);
-            
-            picked = Math.round(data.length - (rotation % 360)/ps);
-            picked = picked >= data.length ? (picked % data.length) : picked;
-            if(oldpick.indexOf(picked) !== -1){
-                d3.select(this).call(spin);
-                return;
-            } else {
-                oldpick.push(picked);
-            }
-            rotation += 90 - Math.round(ps/2);
-            vis.transition()
-                .duration(3000)
-                .attrTween("transform", rotTween)
-                .each("end", function(){
-                    //mark question as seen
-                    d3.select(".slice:nth-child(" + (picked + 1) + ") path")
-                        ;
-                    //populate question
-                    d3.select("#question h1")
-                        .text(data[picked].question);
-                    oldrotation = rotation;
-              
-                    /* Get the result value from object "data" */
-                    console.log(data[picked].value)
-              
-                    /* Comment the below line for restrict spin to sngle time */
-                    container.on("click", spin);
-                });
         }
-        //make arrow
-        svg.append("g")
-            .attr("transform", "translate(" + (w + padding.left + padding.right) + "," + ((h/2)+padding.top) + ")")
-            .append("path")
-            .attr("d", "M-" + (r*.15) + ",0L0," + (r*.05) + "L0,-" + (r*.05) + "Z")
-            .style({"fill":"black"});
-        //draw spin circle
-        container.append("circle")
-            .attr("cx", 0)
-            .attr("cy", 0)
-            .attr("r", 60)
-            .style({"fill":"white","cursor":"pointer"});
-        //spin text
-        container.append("text")
-            .attr("x", 0)
-            .attr("y", 15)
-            .attr("text-anchor", "middle")
-            .text("SPIN")
-            .style({"font-weight":"bold", "font-size":"30px"});
-        
-        
-        function rotTween(to) {
-          var i = d3.interpolate(oldrotation % 360, rotation);
-          return function(t) {
-            return "rotate(" + i(t) + ")";
-          };
-        }
-        
-        
-        function getRandomNumbers(){
-            var array = new Uint16Array(1000);
-            var scale = d3.scale.linear().range([360, 1440]).domain([0, 100000]);
-            if(window.hasOwnProperty("crypto") && typeof window.crypto.getRandomValues === "function"){
-                window.crypto.getRandomValues(array);
-                console.log("works");
-            } else {
-                //no support for crypto, get crappy random numbers
-                for(var i=0; i < 1000; i++){
-                    array[i] = Math.floor(Math.random() * 100000) + 1;
-                }
-            }
-            return array;
-        }
+        return 0; // Default to the first item if something goes wrong
+    }
+
+    // Show the spin wheel overlay after 5 seconds if it hasn't been shown before
+    if (!sessionStorage.getItem('spinWheelOverlayShown')) {
+        setTimeout(function() {
+            spinWheelOverlay.style.display = 'flex';
+            sessionStorage.setItem('spinWheelOverlayShown', 'true');
+        }, 5000);
+    }
+
+    // Spin button event listener
+    spinButton.addEventListener('click', function() {
+        const segmentIndex = calculateSegment();
+        const spinDegrees = 3600; // Base spin to ensure it spins multiple times
+        const segmentDegrees = 360 / items.length; // Degrees per segment
+        const offsetDegrees = segmentDegrees * segmentIndex; // Offset to align with the chosen segment
+        const totalDegrees = spinDegrees + offsetDegrees;
+
+        // Spin the wheel
+        wheel.style.transition = 'transform 4s ease-out';
+        wheel.style.transform = `rotate(${totalDegrees}deg)`;
+
+        // Once the spinning stops, display the result
+        wheel.addEventListener('transitionend', function() {
+            wheel.style.transition = 'none';
+            const normalizedDegrees = totalDegrees % 360;
+            wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
+            alert(`Congratulations! You won: ${items[segmentIndex].label}`);
+        }, { once: true });
+    });
+
+    // Close button event listener
+    document.getElementById('closeSpinWheel').addEventListener('click', function() {
+        spinWheelOverlay.style.display = 'none';
+    });
+
+    // Show button event listener
+    document.getElementById('showSpinWheelBtn').addEventListener('click', function() {
+        spinWheelOverlay.style.display = 'flex';
+    });
+});

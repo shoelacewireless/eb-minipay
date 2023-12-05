@@ -638,6 +638,79 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /*Spin the Wheel Overlay Style*/
+        .spin-the-wheel-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .wheel-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #f2f5f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+            padding-bottom: 30px;
+        }
+
+        .wheel-container .dismiss-container {
+            width: 495px;
+            position: relative;
+            display: block;
+        }
+
+        .wheel-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: 6px;
+            right: 6px;
+        }
+
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            border: 2px solid #000;
+        }
+
+        .segment {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+            clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+            transform-origin: 50% 50%;
+        }
+
+        #spinButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+
     </style>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -750,6 +823,11 @@
                     <img src="images/vpn.png" alt="VPN">
                 </div>
             </div>
+
+            <div class="btn-wrapper">
+                <button class="rounded-btn" id="showSpinWheelBtn">Spin to Win</button>
+            </div>
+
         </div>
         
         <!-- Conversion Overlay -->
@@ -795,10 +873,24 @@
                 </div>
             </div>
         </div>
+
+         <!-- Spin the Wheel Overlay -->
+        <div id="spinWheelOverlay" class="spin-the-wheel-overlay">
+            <div class="wheel-container">
+                <div class="dismiss-container">
+                    <button id="closeSpinWheel">X</button>
+                </div>
+                <div class="wheel">
+                     <!-- Segments will be added here dynamically -->
+                </div>
+                <button id="spinButton">SPIN</button>
+            </div>
+        </div>
         
     </div>
     
 <script src="scripts/overlay.js"></script>
 <script src="scripts/login_functions.js" defer></script>
+<script src="scripts/charts.js" defer></script>
 </body>
 </html>
