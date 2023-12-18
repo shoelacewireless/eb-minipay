@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Define the items with their odds as percentages (make sure they sum up to 100)
    const items = [
-        { number: 1, label: 'EB Silver 10,000', odds: 12.5, color: '#FF0000' },
-        { number: 2, label: 'EB Silver 50,000', odds: 12.5, color: '#FF7F00' },
-        { number: 3, label: 'EB Silver 100,000', odds: 12.5, color: '#FFFF00' },
-        { number: 4, label: 'EB Gold 5,000', odds: 12.5, color: '#008000' },
-        { number: 5, label: 'EB Gold 10,000', odds: 12.5, color: '#0000FF' },
-        { number: 6, label: 'EB Gold 50,000', odds: 12.5, color: '#4B0082' },
+        { number: 1, label: 'EB Silver 10K', odds: 12.5, color: '#FF0000' },
+        { number: 2, label: 'EB Silver 50K', odds: 12.5, color: '#FF7F00' },
+        { number: 3, label: 'EB Silver 100K', odds: 12.5, color: '#FFFF00' },
+        { number: 4, label: 'EB Gold 5K', odds: 12.5, color: '#008000' },
+        { number: 5, label: 'EB Gold 10K', odds: 12.5, color: '#0000FF' },
+        { number: 6, label: 'EB Gold 50K', odds: 12.5, color: '#4B0082' },
         { number: 7, label: 'Celo cUSD 50', odds: 12.5, color: '#EE82EE' },
         { number: 8, label: 'Celo cUSD 10', odds: 12.5, color: '#40E0D0' }
     ];
@@ -56,21 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    function removeSegmentHighlights() {
-        document.querySelectorAll('.segment').forEach(segment => {
-            segment.classList.remove('segment-highlighted');
-        });
-    }
-
     // Spin button event listener
     spinButton.addEventListener('click', function() {
         const segmentIndex = calculateSegment();
-        const spinDegrees = 3600; // Base spin to ensure it spins multiple times
+        const spinDegrees = 1800; // Base spin to ensure it spins multiple times
         const segmentDegrees = 360 / items.length; // Degrees per segment
         const offsetDegrees = segmentDegrees * segmentIndex; // Offset to align with the chosen segment
         const totalDegrees = spinDegrees + offsetDegrees;
-
-        removeSegmentHighlights();
 
         // Spin the wheel
         wheel.style.transition = 'transform 4s ease-out';
@@ -81,11 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
             wheel.style.transition = 'none';
             const normalizedDegrees = totalDegrees % 360;
             wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
-            // Highlight the winning segment
-            /*const winningSegment = document.querySelector('.segment:nth-child(' + (segmentIndex + 1) + ')');
-            if (winningSegment) {
-                winningSegment.classList.add('segment-highlighted');
-            }*/
             alert(`Congratulations! You won: ${items[segmentIndex].label}`);
         }, { once: true });
     });

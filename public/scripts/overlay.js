@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
     showOverlayBtn.addEventListener('click', function() {
 
         updateLoginStatus(isUserLoggedIn())
-        UpdateUI()
 
         //Display Overlay
         if (userLoggedIn) {

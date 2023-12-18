@@ -6,4 +6,7 @@ credentials.txt
 credentials.json
 scripts/credentials.txt
 scripts/credentials.json
+*.crt
+*.der
+*.cert
 >>>>>>> 038e751ffcee96f648e16da9ba9372b7c2be8891
