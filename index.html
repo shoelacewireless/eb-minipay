@@ -26,6 +26,28 @@
             z-index: 1000; /* Stay above other elements */
             margin-bottom: 20px;
         }
+
+        /*Logout Styles*/
+        .logout-container {
+            position: absolute;
+            height: 60px;
+            top: 10px;
+            right: 20px;
+        }
+
+        .logout-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .logout-button img {
+            height: 80%;
+            width: auto;
+        }
+
+        /**/
         body {
             font-family: 'Inter', sans-serif;
             background-color: #18191A;
@@ -1004,6 +1026,11 @@
         <div class="header">
             <h2>EcoBytes</h2>
             <p>Earn Rewards for Smart Networking</p>
+            <div class="logout-container">
+                <button class="logout-button">
+                    <img src="images/logout.png" alt="Logout">
+                </button>
+            </div>
         </div>
     
         <div class="button-container-wrapper">

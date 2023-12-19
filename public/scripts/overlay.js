@@ -90,5 +90,4 @@ document.addEventListener('DOMContentLoaded', function() {
     dismissSuccessOverlay.addEventListener('click', function() {
         successOverlay.style.display = 'none';
     });
-
 });

@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const spinWheelOverlay = document.getElementById('spinWheelOverlay');
+    const congratulationsOverlay = document.getElementById('congratulationsOverlay');
+    const downloadOverlay = document.getElementById('downloadOverlay');
     const spinButton = document.getElementById('spinButton');
     const wheel = document.querySelector('.wheel');
 
@@ -88,9 +90,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const normalizedDegrees = finalPosition % 360;
             wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
 
-             // Re-enable the spin button
-            spinButton.disabled = false;
-            alert(`Congratulations! You won: ${items[segmentIndex].label}`);
+            //Wheel spin finish logic
+            spinWheelOverlay.style.display = 'none';
+            if(getLoginStatus()) {
+                congratulationsOverlay.style.display = 'flex'
+            } else {
+                downloadOverlay.style.display = 'flex'
+            }
+            //alert(`Congratulations! You won: ${items[segmentIndex].label}`);
         }, { once: true });
     });
 
@@ -98,9 +105,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('closeSpinWheel').addEventListener('click', function() {
         spinWheelOverlay.style.display = 'none';
     });
+    document.getElementById('closeDownloadOverlay').addEventListener('click', function() {
+        downloadOverlay.style.display = 'none';
+    });
+    document.getElementById('closeCongratulationsOverlay').addEventListener('click', function() {
+        congratulationsOverlay.style.display = 'none';
+    });
 
     // Show button event listener
     document.getElementById('showSpinWheelBtn').addEventListener('click', function() {
+        spinButton.disabled = false;
         spinWheelOverlay.style.display = 'flex';
     });
 });

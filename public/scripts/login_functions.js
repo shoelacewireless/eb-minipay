@@ -72,6 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
             setLoginStatus(false)
         }
     });
+
+    const logoutButton = document.querySelector('.logout-button');
+    logoutButton.addEventListener('click', function() {
+        logout();
+    });
 });
 
 async function login(email) {
@@ -108,30 +113,35 @@ async function loginConfirmation(email, confirmationCode) {
 }
 
 function logout() {
-  deleteCookie(cookieName)
-  setLoginStatus(false)
+  deleteCookie(cookieName);
+  setLoginStatus(false);
+  UpdateUI();
 }
 
 function isUserLoggedIn() {
 
-  setLoginStatus(doesCookieExist(cookieName))
+  setLoginStatus(doesCookieExist(cookieName));
   UpdateUI();
   if(getLoginStatus()) {
-    updateUserWalletValues()
+    updateUserWalletValues();
   }
-  return getLoginStatus()
+  return getLoginStatus();
 }
 
 //MARK: Util functions
 function UpdateUI() {
   const showOverlayBtn = document.getElementById('showOverlay');
+  const logoutButton = document.querySelector('.logout-button');
+  
   if(getLoginStatus()) {
     showOverlayBtn.textContent = "Convert EcoBytes in MiniPay";
+    logoutButton.style.display = 'block';
   } else {
-    showOverlayBtn.textContent = "LOGIN"
+    showOverlayBtn.textContent = "LOGIN";
+    logoutButton.style.display = 'none';
   }
 
-  applyBlurEffect()
+  applyBlurEffect();
 }
 
 function applyBlurEffect() {
