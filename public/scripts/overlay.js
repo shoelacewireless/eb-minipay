@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const dismissSuccessOverlay = document.getElementById('closeSuccessOverlay');
 
     //Login Overlay
-    const loginOverlay = document.getElementById('loginOverlay'); // Assuming this is your login overlay
+    const loginOverlay = document.getElementById('loginOverlay');
+    const loginConfirmationOverlay = document.getElementById('loginConfirmationOverlay');
 
     // Initially, we don't know the login status, so we assume the user is not logged in
     let userLoggedIn = false;
@@ -23,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Listen for login status changes
     document.addEventListener('loginStatusChanged', function(e) {
         userLoggedIn = e.detail.loggedIn;
-
-        // Optionally, you can adjust the button text or behavior based on the login status
         showOverlayBtn.textContent = userLoggedIn ? "Convert EcoBytes in MiniPay" : "LOGIN";
     });
 

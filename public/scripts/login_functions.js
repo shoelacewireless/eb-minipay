@@ -23,22 +23,52 @@ function updateLoginStatus(isLoggedIn) {
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const emailInput = document.getElementById('email');
+    const loginConfirmationForm = document.getElementById('loginConfirmationForm');
+    const codeInput = document.getElementById('code');
+    var email = ""
    
     loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        var email = emailInput.value;
+        email = emailInput.value;
 
         var isValidEmail = /\S+@\S+\.\S+/.test(email);
 
+        //TODO: Add UI for invalid email not found in backend
         if (isValidEmail) {
             login(email);
-            UpdateUI();  
             loginOverlay.style.display = 'none';
+            loginConfirmationOverlay.style.display = 'flex'
         } else {
             alert('Please enter a valid email address.');
             emailInput.focus();
             UpdateUI();
+
+            setLoginStatus(false)
+        }
+    });
+
+    loginConfirmationForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        var code = codeInput.value;
+
+        var isValidCode = /^\d{6}$/.test(code);
+
+        if (isValidCode) {
+           try {
+                await loginConfirmation(email, code);
+                UpdateUI();
+                updateUserWalletValues();
+                loginConfirmationOverlay.style.display = 'none';
+            } catch (error) {
+                alert('Error during confirmation: ' + error.message);
+                codeInput.focus();
+                setLoginStatus(false);
+            }
+        } else {
+            alert('Please enter a valid 6-digit code.');
+            codeInput.focus();
             setLoginStatus(false)
         }
     });
@@ -53,8 +83,7 @@ async function login(email) {
     });
 
     const json = await response.json();
-    loginConfirmation(email, 258622)
-    //setLoginStatus(true);
+
   } catch (error) {
     console.error('Fetch error:', error);
     setLoginStatus(false);
@@ -86,8 +115,10 @@ function logout() {
 function isUserLoggedIn() {
 
   setLoginStatus(doesCookieExist(cookieName))
-  UpdateUI(); 
-  updateUserWalletValues()
+  UpdateUI();
+  if(getLoginStatus()) {
+    updateUserWalletValues()
+  }
   return getLoginStatus()
 }
 

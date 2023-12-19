@@ -7,7 +7,7 @@ function initializeWeb3() {
     }
 }
 
-let eb_wallet_gold = 10000
+let eb_wallet_gold = 0
 let eb_wallet_silver = 0
 let eb_potential_gold = 0
 let eb_potential_silver = 0
@@ -35,7 +35,7 @@ async function sendcUSD() {
         return { success: false, error: error.message };
     }
 
-    eb_wallet_gold = revertKFormat(document.getElementById('eb_wallet_gold').innerHTML);
+    eb_wallet_gold = revertKFormat(document.getElementById('eb_wallet_gold_overlay').innerHTML);
 
     //TODO: Use backend to validate wallet funds
     let inputFieldGold = document.getElementById('eb_gold_value');
@@ -46,7 +46,7 @@ async function sendcUSD() {
     let goldCurrentValue = parseInt(inputFieldGold.value.replace(/,/g, ''), 10);
 
     try {
-        const response = await fetch("http://eb-minipay-demo.shoelacewireless.com:8080/convert", {
+        const response = await fetch(`${serverAddress}:${serverPort}/convert`, {
             method: "POST",
             body: JSON.stringify({ address: currentAccount, ebGoldAmount: goldCurrentValue }),
             headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -93,7 +93,9 @@ function updateWalletValue() {
         eb_wallet_gold = newWalletValue
     }
 
-    document.getElementById('eb_wallet_gold').innerHTML = kFormatter(eb_wallet_gold);
+    document.querySelectorAll('.eb_wallet_gold').forEach(element => {
+        element.innerHTML = kFormatter(eb_wallet_gold);
+    });
 }
 
 function updateConversionValues(change) {

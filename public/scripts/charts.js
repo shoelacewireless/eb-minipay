@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // This function calculates which segment the wheel should stop on
     function calculateSegment() {
-        let rand = Math.random() * 100; // Random number between 0 and 100
+        let rand = Math.random() * 100;
         let sumOdds = 0;
 
         for (let i = 0; i < items.length; i++) {
@@ -104,23 +104,3 @@ document.addEventListener('DOMContentLoaded', function() {
         spinWheelOverlay.style.display = 'flex';
     });
 });
-
-/*spinButton.addEventListener('click', function() {
-        const segmentIndex = calculateSegment();
-        const spinDegrees = 1800; // Base spin to ensure it spins multiple times
-        const segmentDegrees = 360 / items.length; // Degrees per segment
-        const offsetDegrees = segmentDegrees * segmentIndex; // Offset to align with the chosen segment
-        const totalDegrees = spinDegrees + offsetDegrees;
-
-        // Spin the wheel
-        wheel.style.transition = 'transform 4s ease-out';
-        wheel.style.transform = `rotate(${totalDegrees}deg)`;
-
-        // Once the spinning stops, display the result
-        wheel.addEventListener('transitionend', function() {
-            wheel.style.transition = 'none';
-            const normalizedDegrees = (totalDegrees % 360);
-            wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
-            alert(`Congratulations! You won: ${items[segmentIndex].label}`);
-        }, { once: true });
-    });*/
