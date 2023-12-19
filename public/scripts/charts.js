@@ -58,6 +58,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Spin button event listener
     spinButton.addEventListener('click', function() {
+
+        // Disable the button at the start of the spin
+        spinButton.disabled = true;
+
+        const segmentIndex = calculateSegment(); // This is the index of the segment to win
+        const spinMultiplier = 10; // Determines how many times the wheel spins before stopping
+        const segmentDegrees = 360 / items.length; // Degrees per segment
+
+        // Calculate the offset to align the winning segment with the top center.
+        //TODO: find better way to align now adding 1 segment at the end so it aligns with arrow
+        const finalPosition = (spinMultiplier * 360) - (segmentIndex * segmentDegrees) + segmentDegrees;
+
+        // Reset the transition and transform to apply a new spin
+        wheel.style.transition = '';
+        wheel.style.transform = 'rotate(0deg)';
+
+        // Force a reflow in between removing and adding the transition
+        wheel.offsetHeight;
+
+        // Spin the wheel to the final position
+        wheel.style.transition = 'transform 4s ease-out';
+        wheel.style.transform = `rotate(${finalPosition}deg)`;
+
+        // Once the spinning stops, display the result
+        wheel.addEventListener('transitionend', function() {
+            wheel.style.transition = 'none';
+            // Normalize the degrees so the wheel stops with the segment in the middle
+            const normalizedDegrees = finalPosition % 360;
+            wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
+
+             // Re-enable the spin button
+            spinButton.disabled = false;
+            alert(`Congratulations! You won: ${items[segmentIndex].label}`);
+        }, { once: true });
+    });
+
+    // Close button event listener
+    document.getElementById('closeSpinWheel').addEventListener('click', function() {
+        spinWheelOverlay.style.display = 'none';
+    });
+
+    // Show button event listener
+    document.getElementById('showSpinWheelBtn').addEventListener('click', function() {
+        spinWheelOverlay.style.display = 'flex';
+    });
+});
+
+/*spinButton.addEventListener('click', function() {
         const segmentIndex = calculateSegment();
         const spinDegrees = 1800; // Base spin to ensure it spins multiple times
         const segmentDegrees = 360 / items.length; // Degrees per segment
@@ -71,20 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Once the spinning stops, display the result
         wheel.addEventListener('transitionend', function() {
             wheel.style.transition = 'none';
-            const normalizedDegrees = totalDegrees % 360;
+            const normalizedDegrees = (totalDegrees % 360);
             wheel.style.transform = `rotate(${normalizedDegrees}deg)`;
             alert(`Congratulations! You won: ${items[segmentIndex].label}`);
         }, { once: true });
-    });
-
-    // Close button event listener
-    document.getElementById('closeSpinWheel').addEventListener('click', function() {
-        removeSegmentHighlights();
-        spinWheelOverlay.style.display = 'none';
-    });
-
-    // Show button event listener
-    document.getElementById('showSpinWheelBtn').addEventListener('click', function() {
-        spinWheelOverlay.style.display = 'flex';
-    });
-});
+    });*/
