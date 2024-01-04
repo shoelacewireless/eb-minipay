@@ -128,6 +128,23 @@
             border: 2px solid black;
         }
 
+        .login-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .login-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: -14px;
+            right: -14px;
+        }
+
         .login-badge-container {
             max-width: 265px;
             display: flex;
@@ -245,6 +262,23 @@
             flex-direction: column;
             border-radius: 15px;
             border: 2px solid black;
+        }
+
+        .login-confirmation-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .login-confirmation-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: -14px;
+            right: -14px;
         }
 
         .login-confirmation-input-container {
@@ -989,28 +1023,34 @@
     <!-- Login Overlay -->
     <div id="loginOverlay" class="login-overlay">
         <div class="login-container">
-          <div class="login-badge-container">
-            <img src="images/ecobyte-badge.png" alt="Ecobytes Badge">
-            <p>Earn Rewards for Smart Networking</p>
-          </div>
-          <div class="login-input-container">
-            <p class="title">Link your EcoBytes</p>
-            <p class="title">Account to MiniPay</p>
-            <form id="loginForm">
-                <input type="email" id="email" name="email" placeholder="Enter Email" required>
-                <button type="submit">Continue</button>
-            </form>
-            <p class="privacy">
-              By proceeding you are agreeing to our <a href="https://www.shoelacewireless.com/eb/tos-ecobytes" target="_blank">Terms of Service</a>. You can also learn how we protect your data in our <a href="https://www.shoelacewireless.com/eb/pp" target="_blank">Privacy Statement</a>.
-            </p>
-            <p><a href="https://3cobytes.com/" target="_blank" class="createAccountLink">Or Create an Account</a></p>
-          </div>
+            <div class="dismiss-container">
+                <button id="dismissLoginOverlay">X</button>
+            </div>
+            <div class="login-badge-container">
+                <img src="images/ecobyte-badge.png" alt="Ecobytes Badge">
+                <p>Earn Rewards for Smart Networking</p>
+            </div>
+            <div class="login-input-container">
+                <p class="title">Link your EcoBytes</p>
+                <p class="title">Account to MiniPay</p>
+                <form id="loginForm">
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                    <button type="submit">Continue</button>
+                </form>
+                <p class="privacy">
+                    By proceeding you are agreeing to our <a href="https://www.shoelacewireless.com/eb/tos-ecobytes" target="_blank">Terms of Service</a>. You can also learn how we protect your data in our <a href="https://www.shoelacewireless.com/eb/pp" target="_blank">Privacy Statement</a>.
+                </p>
+                <p><a href="https://3cobytes.com/" target="_blank" class="createAccountLink">Or Create an Account</a></p>
+            </div>
         </div>
     </div>
 
     <!-- Login Confirmation Overlay for 6-Digit Code Entry -->
     <div id="loginConfirmationOverlay" class="login-confirmation-overlay">
         <div class="login-confirmation-container">
+            <div class="dismiss-container">
+                <button id="dismissLoginConfirmationOverlay">X</button>
+            </div>
             <div class="login-confirmation-input-container">
                 <p>Please enter the 6-digit code sent to your email</p>
                 <form id="loginConfirmationForm">

@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //Login Overlay
     const loginOverlay = document.getElementById('loginOverlay');
     const loginConfirmationOverlay = document.getElementById('loginConfirmationOverlay');
+    const dismissLoginOverlayBtn = document.getElementById('dismissLoginOverlay');
+    const dismissLoginConfirmationOverlayBtn = document.getElementById('dismissLoginConfirmationOverlay');
 
     // Initially, we don't know the login status, so we assume the user is not logged in
     let userLoggedIn = false;
@@ -37,6 +39,29 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.style.display = 'flex';
         } else {
             loginOverlay.style.display = 'flex';
+        }
+    });
+
+     // Event listener for dismissing the login overlay with the "X" button
+    dismissLoginOverlayBtn.addEventListener('click', function() {
+        loginOverlay.style.display = 'none';
+    });
+
+    // Event listener for dismissing the login overlay when clicking outside the box
+    loginOverlay.addEventListener('click', function(event) {
+        if (event.target === loginOverlay) {
+            loginOverlay.style.display = 'none';
+        }
+    });
+
+    dismissLoginConfirmationOverlayBtn.addEventListener('click', function() {
+        loginConfirmationOverlay.style.display = 'none';
+    });
+
+     // Event listener for dismissing the login confirmation overlay when clicking outside the box
+    loginConfirmationOverlay.addEventListener('click', function(event) {
+        if (event.target === loginConfirmationOverlay) {
+            loginConfirmationOverlay.style.display = 'none';
         }
     });
 
