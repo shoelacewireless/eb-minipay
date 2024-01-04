@@ -146,7 +146,7 @@ function UpdateUI() {
 }
 
 function applyBlurEffect() {
-    var classNames = ['.chart-image', '.currency-number', '.efficiency-dots'];
+    var classNames = ['.chart-image','.efficiency-dots', '.point-item', '.point-header'];
 
     classNames.forEach(className => { 
         var elements = document.querySelectorAll(className);
