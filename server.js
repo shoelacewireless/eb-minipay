@@ -13,8 +13,8 @@ const kit = ContractKit.newKitFromWeb3(web3);
 const app = express();
 app.use(cookieParser());
 
-const baseServerAddress = process.env.BASE_SERVER_ADDRESS;
-const serverPort = process.env.SERVER_PORT;
+const baseServerAddress = process.env.BACKEND_BASE_SERVER_ADDRESS;
+const serverPort = process.env.BACKEND_SERVER_PORT;
 
 // serve files from the public directory
 app.use(express.static('public'));

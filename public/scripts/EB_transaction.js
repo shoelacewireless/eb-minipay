@@ -1,9 +1,3 @@
-require('dotenv').config();
-
-const isDevelopment = process.env.NODE_ENV === 'development';
-const serverAddress = isDevelopment ? 'http://localhost' : process.env.NODE_BASE_SERVER_ADDRESS;
-const serverPort = process.env.NODE_SERVER_PORT;
-
 // Initialize web3 with MiniPay provider
 function initializeWeb3() {
     if (window.ethereum && window.ethereum.isMiniPay) {

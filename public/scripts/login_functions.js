@@ -1,9 +1,7 @@
-require('dotenv').config();
-
-const isDevelopment = process.env.NODE_ENV === 'development';
-const serverAddress = isDevelopment ? 'http://localhost' : process.env.NODE_BASE_SERVER_ADDRESS;
-const serverPort = process.env.NODE_SERVER_PORT;
-const cookieName = process.env.EB_COOKIE_NAME;
+const isDevelopment = true //Consider adding this to a global variaables file
+const serverAddress = isDevelopment ? 'http://localhost' : "http://eb-minipay-demo.shoelacewireless.com"
+const serverPort = "8080"
+const cookieName = "EcoBytesCookie"
 
 var sharedState = {
     isLoggedIn: false
