@@ -1,11 +1,6 @@
 <<<<<<< HEAD
 node_modules/
-credentials.json
-=======
-credentials.txt
-credentials.json
-scripts/credentials.txt
-scripts/credentials.json
+*.env
 *.crt
 *.der
 *.cert

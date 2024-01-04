@@ -1,6 +1,9 @@
-const serverAddress = "http://localhost" //http://eb-minipay-demo.shoelacewireless.com
-const serverPort = "8080"
-const cookieName = "EcoBytesCookie"
+require('dotenv').config();
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+const serverAddress = isDevelopment ? 'http://localhost' : process.env.NODE_BASE_SERVER_ADDRESS;
+const serverPort = process.env.NODE_SERVER_PORT;
+const cookieName = process.env.EB_COOKIE_NAME;
 
 var sharedState = {
     isLoggedIn: false

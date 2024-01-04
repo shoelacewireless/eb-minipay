@@ -1,5 +1,6 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // Add this line to use self signed cert
 
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const Web3 = require("web3");
@@ -12,8 +13,8 @@ const kit = ContractKit.newKitFromWeb3(web3);
 const app = express();
 app.use(cookieParser());
 
-const baseServerAddress = "https://api-test.shoelacewireless.com"
-const serverPort = "3200"
+const baseServerAddress = process.env.BASE_SERVER_ADDRESS;
+const serverPort = process.env.SERVER_PORT;
 
 // serve files from the public directory
 app.use(express.static('public'));
