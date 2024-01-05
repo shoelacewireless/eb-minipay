@@ -7,16 +7,10 @@ function initializeWeb3() {
     }
 }
 
-function logToScreen(message) {
-    const logElement = document.getElementById("log");
-    if (logElement) {
-        logElement.innerHTML += message + "<br>";
-    } else {
-        console.error("Log element not found in DOM");
-    }
-}
-
-let eb_wallet_gold = 10000
+let eb_wallet_gold = 0
+let eb_wallet_silver = 0
+let eb_potential_gold = 0
+let eb_potential_silver = 0
 const cusd_rate = 0.001
 const gold_rate = 1000
 
@@ -41,7 +35,7 @@ async function sendcUSD() {
         return { success: false, error: error.message };
     }
 
-    eb_wallet_gold = revertKFormat(document.getElementById('eb_wallet_gold').innerHTML);
+    eb_wallet_gold = revertKFormat(document.getElementById('eb_wallet_gold_overlay').innerHTML);
 
     //TODO: Use backend to validate wallet funds
     let inputFieldGold = document.getElementById('eb_gold_value');
@@ -52,7 +46,7 @@ async function sendcUSD() {
     let goldCurrentValue = parseInt(inputFieldGold.value.replace(/,/g, ''), 10);
 
     try {
-        const response = await fetch("http://eb-minipay-demo.shoelacewireless.com:8080/convert", {
+        const response = await fetch(`${serverAddress}:${serverPort}/convert`, {
             method: "POST",
             body: JSON.stringify({ address: currentAccount, ebGoldAmount: goldCurrentValue }),
             headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -99,7 +93,9 @@ function updateWalletValue() {
         eb_wallet_gold = newWalletValue
     }
 
-    document.getElementById('eb_wallet_gold').innerHTML = kFormatter(eb_wallet_gold);
+    document.querySelectorAll('.eb_wallet_gold').forEach(element => {
+        element.innerHTML = kFormatter(eb_wallet_gold);
+    });
 }
 
 function updateConversionValues(change) {
@@ -121,4 +117,46 @@ function updateConversionValues(change) {
         inputFieldGold.value = goldNewValue.toLocaleString();
         inputFieldCusd.value = parseFloat(cusdNewValue.toFixed(3)).toString();
     }
+}
+
+//MARK: User backend Wallet functions
+async function requestMinedTokens() {
+    const response = await fetch(`${serverAddress}:${serverPort}/getMinedTokens`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    const json = await response.json();
+   
+    eb_wallet_gold = json.response.goldTokens
+    eb_wallet_silver = json.response.silverTokens
+}
+
+async function requestPotentialTokens() {
+    const response = await fetch(`${serverAddress}:${serverPort}/getPotentialTokens`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    });
+
+    const json = await response.json();
+    eb_potential_gold = json.response.goldTokens
+    eb_potential_silver = json.response.silverTokens
+}
+
+async function updateUserWalletValues() {
+    await requestMinedTokens()
+    await requestPotentialTokens()
+
+    document.querySelectorAll('.eb_wallet_gold').forEach(element => {
+        element.innerHTML = kFormatter(eb_wallet_gold);
+    });
+    document.querySelectorAll('.eb_wallet_silver').forEach(element => {
+        element.innerHTML = kFormatter(eb_wallet_silver);
+    });
+    document.querySelectorAll('.eb_potential_gold').forEach(element => {
+        element.innerHTML = kFormatter(eb_potential_gold);
+    });
+    document.querySelectorAll('.eb_potential_silver').forEach(element => {
+        element.innerHTML = kFormatter(eb_potential_silver);
+    });
 }

@@ -26,6 +26,28 @@
             z-index: 1000; /* Stay above other elements */
             margin-bottom: 20px;
         }
+
+        /*Logout Styles*/
+        .logout-container {
+            position: absolute;
+            height: 60px;
+            top: 10px;
+            right: 20px;
+        }
+
+        .logout-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .logout-button img {
+            height: 80%;
+            width: auto;
+        }
+
+        /**/
         body {
             font-family: 'Inter', sans-serif;
             background-color: #18191A;
@@ -85,7 +107,7 @@
             right: 0;
             bottom: 0;
             background-color: rgba(24, 25, 26, 1);
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000
@@ -104,6 +126,23 @@
             flex-direction: column;
             border-radius: 15px;
             border: 2px solid black;
+        }
+
+        .login-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .login-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: -14px;
+            right: -14px;
         }
 
         .login-badge-container {
@@ -193,6 +232,99 @@
 
         .login-input-container p.privacy a:hover {
           color: #0c4b8e;
+        }
+
+        /* EcoByte Login Confirmation Style*/
+
+        .login-confirmation-overlay {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(24, 25, 26, 1);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000
+        }
+
+        .login-confirmation-container {
+            width: 100%;
+            max-width: 350px;
+            background-color: #f2f5f7;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+        }
+
+        .login-confirmation-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .login-confirmation-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: -14px;
+            right: -14px;
+        }
+
+        .login-confirmation-input-container {
+            max-width: 265px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .login-confirmation-input-container p {
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+        }
+
+        .login-confirmation-input-container p.title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .login-confirmation-input-container form {
+            max-width: 265px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-confirmation-input-container form input {
+            max-width: 240px;
+            font-size: 24px;
+            border: 1px solid black;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .login-confirmation-input-container form button {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000;
+            background-color: #68B42C;
+            border: 1px solid black;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
         }
 
         /**/
@@ -628,6 +760,258 @@
             margin-bottom: 20px;
         }
 
+        /*Blur styles*/
+        .blur-effect {
+            filter: blur(5px);
+            transition: filter 0.3s;
+        }
+
+        .currency-number {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /*Spin the Wheel Overlay Style*/
+        .spin-the-wheel-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .wheel-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #f2f5f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+            padding: 30px;
+        }
+
+        .wheel-container .dismiss-container {
+            width: 495px;
+            position: relative;
+            display: block;
+        }
+
+        .wheel-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: -24px;
+            right: 6px;
+        }
+
+        .wheel {
+            position: relative;
+            top: 0;
+            left 0;
+            width: 300px;
+            height: 300px;
+            background: #333;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 0 5px #333,
+            0 0 0 15px #fff,
+            0 0 0 18px #111;
+        }
+
+        .segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: bottom right;
+            clip-path: polygon(0 0, 58% 0, 100% 100%, 0 58%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+
+        .segment-label {
+            position: relative;
+            transform: rotate(45deg);
+            font-size: 1em;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15);
+        }
+
+        #spinButton {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 0.1em;
+            border: 4px solid rgba(0, 0, 0, 0.75);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        #spinButton::before {
+            content: '';
+            position: absolute;
+            top: -28px;
+            width: 20px;
+            height: 30px;
+            background: #fff;
+            clip-path: polygon(50% 0%, 15% 100%, 85% 100%);
+
+        }
+
+        /*Congratulations Overlay Style*/
+        .congratulations-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .congratulations-overlay-container {
+            width: 100%;
+            max-width: 300px;
+            background-color: #f2f5f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+            padding-bottom: 30px;
+        }
+
+       .congratulations-overlay-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .congratulations-overlay-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: 6px;
+            right: 6px;
+        }
+
+        .congratulations-overlay-container .dismiss-button:hover {
+            color: #999;
+        }
+
+        .congratulations-overlay-content {
+            text-align: center; 
+            padding: 0 20px;
+            margin-top: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        .congratulations-overlay-content p:first-child {
+            font-weight: bold; /* Makes the first paragraph bold */
+        }
+
+        /*Download Overlay Style*/
+        .download-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .download-overlay-container {
+            width: 100%;
+            max-width: 300px;
+            background-color: #f2f5f7;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 15px;
+            border: 2px solid black;
+            padding-bottom: 30px;
+        }
+
+       .download-overlay-container .dismiss-container {
+            width: 295px;
+            position: relative;
+            display: block;
+        }
+
+        .download-overlay-container .dismiss-container button {
+            font-size: 20px;
+            background-color: #f2f5f7;
+            padding: 2px;
+            border: none;
+            cursor: pointer;
+            position: absolute; 
+            top: 6px;
+            right: 6px;
+        }
+
+        .download-overlay-container .dismiss-button:hover {
+            color: #999;
+        }
+
+        .download-overlay-content {
+            text-align: center; 
+            padding: 0 20px;
+            margin-top: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        .download-overlay-content p:first-child {
+            font-weight: bold;
+        }
+
+        .download-overlay .store-buttons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .download-overlay .store-buttons img {
+            height: 50px;
+            width: auto;
+        }
+
     </style>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -637,38 +1021,64 @@
 
 <body>
 
+    <!-- Login Overlay -->
     <div id="loginOverlay" class="login-overlay">
         <div class="login-container">
-          <div class="login-badge-container">
-            <img src="images/ecobyte-badge.png" alt="Ecobytes Badge">
-            <p>Earn Rewards for Smart Networking</p>
-          </div>
-          <div class="login-input-container">
-            <p class="title">Link your EcoBytes</p>
-            <p class="title">Account to MiniPay</p>
-            <form id="loginForm">
-              <input type="tel" id="phone" name="phone" placeholder="Enter Phone #" pattern="\d*" required>
-              <button type="submit">Continue</button>
-            </form>
-            <p class="privacy">
-              By proceeding you are agreeing to our <a href="https://www.shoelacewireless.com/eb/tos-ecobytes" target="_blank">Terms of Service</a>. You can also learn how we protect your data in our <a href="https://www.shoelacewireless.com/eb/pp" target="_blank">Privacy Statement</a>.
-            </p>
-            <p><a href="https://3cobytes.com/" target="_blank" class="createAccountLink">Or Create an Account</a></p>
-          </div>
+            <div class="dismiss-container">
+                <button id="dismissLoginOverlay">X</button>
+            </div>
+            <div class="login-badge-container">
+                <img src="images/ecobyte-badge.png" alt="Ecobytes Badge">
+                <p>Earn Rewards for Smart Networking</p>
+            </div>
+            <div class="login-input-container">
+                <p class="title">Link your EcoBytes</p>
+                <p class="title">Account to MiniPay</p>
+                <form id="loginForm">
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                    <button type="submit">Continue</button>
+                </form>
+                <p class="privacy">
+                    By proceeding you are agreeing to our <a href="https://www.shoelacewireless.com/eb/tos-ecobytes" target="_blank">Terms of Service</a>. You can also learn how we protect your data in our <a href="https://www.shoelacewireless.com/eb/pp" target="_blank">Privacy Statement</a>.
+                </p>
+                <p><a href="https://3cobytes.com/" target="_blank" class="createAccountLink">Or Create an Account</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Confirmation Overlay for 6-Digit Code Entry -->
+    <div id="loginConfirmationOverlay" class="login-confirmation-overlay">
+        <div class="login-confirmation-container">
+            <div class="dismiss-container">
+                <button id="dismissLoginConfirmationOverlay">X</button>
+            </div>
+            <div class="login-confirmation-input-container">
+                <p>Please enter the 6-digit code sent to your email</p>
+                <form id="loginConfirmationForm">
+                    <input type="text" id="code" name="code" placeholder="Enter 6-digit code" pattern="\d{6}" required>
+                    <button type="submit">Verify</button>
+                </form>
+            </div>
         </div>
     </div>
     
+    <!-- Main Page -->
     <div class="main-wrapper">
         <div class="header">
             <h2>EcoBytes</h2>
             <p>Earn Rewards for Smart Networking</p>
+            <div class="logout-container">
+                <button class="logout-button">
+                    <img src="images/logout.png" alt="Logout">
+                </button>
+            </div>
         </div>
     
         <div class="button-container-wrapper">
 
              <!-- Conversion Button -->
             <div class="btn-wrapper">
-                <button class="rounded-btn" id="showOverlay">Convert EcoBytes in MiniPay</button>
+                <button class="rounded-btn" id="showOverlay">LOGIN</button>
             </div>
 
             <div class="container">
@@ -712,16 +1122,16 @@
                         <div class="point-item">
                             <img class="gold" src="images/gold_coin.svg" alt="Gold" />
                             <span>Gold</span>
-                            <div>19.6 K</div>
-                            <div>8.7 K</div>
+                            <div class="currency-number eb_wallet_gold">-</div>
+                            <div class="currency-number eb_potential_gold">-</div>
                         </div>
                 
                         <!-- Silver Row -->
                         <div class="point-item">
                             <img class="silver" src="images/silver_coin.svg" alt="Silver" />
                             <span>Silver</span>
-                            <div>21.7 K</div>
-                            <div>11.1 K</div>
+                            <div class="currency-number eb_wallet_silver">-</div>
+                            <div class="currency-number eb_potential_silver">-</div>
                         </div>
                     </div>
                 </div>
@@ -740,6 +1150,11 @@
                     <img src="images/vpn.png" alt="VPN">
                 </div>
             </div>
+
+            <div class="btn-wrapper">
+                <button class="rounded-btn" id="showSpinWheelBtn">Spin to Win</button>
+            </div>
+
         </div>
         
         <!-- Conversion Overlay -->
@@ -753,7 +1168,7 @@
                         <img src="images/gold_coin.svg" alt="Gold"/>
                         <p>Gold</p>
                     </div>
-                    <p id="eb_wallet_gold">10K</p>
+                    <p id="eb_wallet_gold_overlay" class="eb_wallet_gold">-</p>
                 </div>
                 <img src="images/gold_coin.svg" alt="Gold"/>
                 <div class="counter-container">
@@ -785,10 +1200,60 @@
                 </div>
             </div>
         </div>
+
+         <!-- Spin the Wheel Overlay -->
+        <div id="spinWheelOverlay" class="spin-the-wheel-overlay">
+            <div class="wheel-container">
+                <div class="dismiss-container">
+                    <button id="closeSpinWheel">X</button>
+                </div>
+                <div class="wheel">
+                     <!-- Segments will be added here dynamically -->
+                </div>
+                <button id="spinButton">SPIN</button>
+            </div>
+        </div>
+
+        <!-- Congratulations Overlay -->
+        <div class="congratulations-overlay" id="congratulationsOverlay">
+            <div class="congratulations-overlay-container">
+                <div class="dismiss-container">
+                    <button id="closeCongratulationsOverlay">X</button>
+                </div>
+                <div class="congratulations-overlay-content">
+                    <p>Congratulations!</p>
+                    <p>Your Rewards have been added to your account</p>
+                    <p>You can enjoy more rewards or gift them in the <a href="https://3cobytes.com/" target="_blank" class="app-link">EcoBytes App</a>.</p>
+                    <p>Earn more rewards by <a href="#" target="_blank" class="app-link">referring</a> friends too.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Overlay -->
+        <div class="download-overlay" id="downloadOverlay">
+            <div class="download-overlay-container">
+                <div class="dismiss-container">
+                    <button id="closeDownloadOverlay">X</button>
+                </div>
+                <div class="download-overlay-content">
+                    <p>Please Login or Register on EcoBytes App to Claim your reward!</p>
+                    <p>Get our app for more amazing features and rewards.</p>
+                    <div class="store-buttons">
+                        <a href="https://play.google.com/store/apps/details?id=com.shoelacewireless.ecobytes&hl=en&pli=1" target="_blank">
+                            <img src="images/play_store.png" alt="Play Store" />
+                        </a>
+                        <a href="https://apps.apple.com/us/app/ecobytes/id1594128885" target="_blank">
+                            <img src="images/app_store.png" alt="App Store" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
     
 <script src="scripts/overlay.js"></script>
 <script src="scripts/login_functions.js" defer></script>
+<script src="scripts/charts.js" defer></script>
 </body>
 </html>
